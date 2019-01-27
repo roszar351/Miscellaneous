@@ -24,3 +24,5 @@ A collection of programs I have made to better undestand Java and some concepts 
 9. SudokuSolver.java
 	* Brute force attempt at solving a sudoku(each number is guessed randomly)
 	* Very slow, not meant as a proper sudoku solver
+10. PagePuzzleNumberSolver.java
+	* Solves the cross sum puzzle in [Puzzle Page app](https://play.google.com/store/apps/details?id=com.appynation.puzzlepage&hl=en_IE)
