@@ -4,7 +4,7 @@ A collection of programs I have made to better undestand Java and some concepts 
 	* Driver program i.e. is used to run other programs in the directory
 2. Card.java
 	* Represents a card object
-	* Used in my other project, **link available soon**
+	* Used in my other [project](https://github.com/roszar351/Card_games)
 3. Deck.java
 	* Represents a deck object
 	* Has an arraylist of cards
