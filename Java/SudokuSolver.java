@@ -17,12 +17,15 @@ public class SudokuSolver
 		readSudokuFromFile();
 	
 		final long startTime = System.currentTimeMillis();
-		do
-		{
-			copyGridContents();
-			again = fillRandomly();
-		}while(!validSolution() || !again);
-		
+		// do
+		// {
+		// 	copyGridContents();
+		// 	again = fillRandomly();
+		// }while(!validSolution() || !again);
+
+		copyGridContents();
+		fasterSolver();
+
 		printGrid();
 		
 		final long endTime = System.currentTimeMillis();
@@ -91,6 +94,35 @@ public class SudokuSolver
 		}
 		return true;
 	}
+
+	// Uses backtracking to solve quicker
+	public static boolean fasterSolver()
+	{
+		for(int row = 0; row < grid.length; row++) 
+		{
+			for(int col = 0; col < grid[row].length; col++)
+			{
+				if(grid[row][col] == 0)
+				{
+					for(int number = 1; number <= 9; number++)
+					{
+						if(!checkPresentNumbersHorizontal(row).contains(number) && !checkPresentNumbersVertical(col).contains(number) && !checkPresentNumbersSquare(row, col).contains(number))
+						{
+							grid[row][col] = number;
+
+							if(fasterSolver())
+								return true;
+							else
+								grid[row][col] = 0;
+						}
+			   		}
+			  		return false;
+			  	}
+			}
+		}
+   
+		return true;
+	}
 	
 	public static ArrayList<Integer> checkPresentNumbersHorizontal(int row)
 	{
@@ -118,6 +150,22 @@ public class SudokuSolver
 		return temp;
 	}
 	
+	public static ArrayList<Integer> checkPresentNumbersSquare(int row, int colum)
+	{
+		ArrayList<Integer> temp = new ArrayList<>();
+
+		for(int i = 0 + 3 * (row / 3); i < 3 * (row / 3 + 1); i++)
+		{
+			for(int j = 0 + 3 * (colum / 3); j < 3 * (colum / 3 + 1); j++)
+			{
+				if(grid[i][j] != 0)
+					temp.add(grid[i][j]);
+			}
+		}
+
+		return temp;
+	}
+
 	public static boolean validSolution()
 	{
 		return checkHorizontal() && checkVertical() && checkSquare();
