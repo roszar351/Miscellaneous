@@ -120,7 +120,6 @@ public class SudokuSolver
 			  	}
 			}
 		}
-   
 		return true;
 	}
 	
@@ -179,7 +178,7 @@ public class SudokuSolver
 		{
 			for(int j = 0; j < grid[0].length; j++)
 			{
-				if(alreadyThere.contains(grid[i][j]))
+				if(alreadyThere.contains(grid[i][j]) || grid[i][j] == 0)
 					return false;
 				
 				alreadyThere.add(grid[i][j]);
@@ -199,7 +198,7 @@ public class SudokuSolver
 		{
 			for(int j = 0; j < grid.length; j++)
 			{
-				if(alreadyThere.contains(grid[j][i]))
+				if(alreadyThere.contains(grid[j][i]) || grid[j][i] == 0)
 					return false;
 				
 				alreadyThere.add(grid[j][i]);
@@ -230,21 +229,21 @@ public class SudokuSolver
 			{
 				if(j < 3)
 				{
-					if(alreadyThere1.contains(grid[i][j]))
+					if(alreadyThere1.contains(grid[i][j]) || grid[i][j] == 0)
 						return false;
 					
 					alreadyThere1.add(grid[i][j]);
 				}
 				else if(j < 6)
 				{
-					if(alreadyThere2.contains(grid[i][j]))
+					if(alreadyThere2.contains(grid[i][j]) || grid[i][j] == 0)
 						return false;
 					
 					alreadyThere2.add(grid[i][j]);
 				}
 				else
 				{
-					if(alreadyThere3.contains(grid[i][j]))
+					if(alreadyThere3.contains(grid[i][j]) || grid[i][j] == 0)
 						return false;
 					
 					alreadyThere3.add(grid[i][j]);
